@@ -1,8 +1,20 @@
 <html>
-    <head></head>
+    <head>
+        <script src="game-round.js"></script>
+        <script src="game-session.js"></script>  
+        <script src="score-board.js"></script>      
+        <script src="game-manager.js"></script>
+        <script src="main.js"></script>
+        
+    </head>
     <body>
         <div>
-            Hello World!
+            <button onclick="clickedStartButton()"> START</button>
+            <button onclick="clickedReactionField()" id="reaction_field"> REACTION</button>
+            <div> BEST TIME: <div id="best_game_time"></div></div>
+            <div> BEST SESSION TIME: <div id="best_time"></div></div>
+            <div> WORST SESSION TIME: <div id="worst_time"></div></div>
+            <div> AVERAGE SESSION TIME: <div id="avg_time"></div></div>
         </div>
     </body>
 </html>
