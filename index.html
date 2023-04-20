@@ -1,25 +1,61 @@
 <html>
-    <head>
-        <script src="color-picker.js"></script>
-        <script src="game-round.js"></script>
-        <script src="game-session.js"></script>  
-        <script src="score-board.js"></script>      
-        <script src="game-manager.js"></script>
-        <script src="settings-reader.js"></script>
-        <script src="main.js"></script>
-        
-    </head>
-    <body onload="pageLoaded()">
-        <div>
-            <div id="game_field"> FIELD </div>
-            <input type="number" id="rounds_per_session">
-            <button onclick="clickedStartButton()"> START</button>
-            <button onclick="clickedReactionField()" id="reaction_field"> REACTION</button>
-            <button onclick="clickedStopButton()" id="reaction_field"> STOP</button>
-            <div> BEST TIME: <div id="best_game_time"></div></div>
-            <div> BEST SESSION TIME: <div id="best_time"></div></div>
-            <div> WORST SESSION TIME: <div id="worst_time"></div></div>
-            <div> AVERAGE SESSION TIME: <div id="avg_time"></div></div>
-        </div>
-    </body>
+  <head>
+    <script src="error-messages.js"></script>
+    <script src="color-picker.js"></script>
+    <script src="game-round.js"></script>
+    <script src="game-session.js"></script>  
+    <script src="score-board.js"></script>      
+    <script src="game-manager.js"></script>
+    <script src="settings-reader.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="index.css">      
+  </head>
+
+  <body onload="pageLoaded()">
+
+    <div id="main_window">
+      <br>
+      <div id = "hello_message">
+        Zagraj w REFLEKSOMIERZACZ!
+      </div>
+      <br>
+      <div id = "game_field_div" class = "field">
+          <button id = "game_field" onclick="clickedReactionField()" class = "field"></button>
+      </div>
+      <br>
+      <div id = "rounds_input" >
+        Wprowadź liczbę rund do rozegrania w kolejne sesji:  <input type="number" id="rounds_per_session">
+      </div>
+      <br>
+      <div id = "buttons_div" >        
+        <button onclick="clickedStartButton()" id= "start_btn" class="game_button"> START</button>              
+        <button onclick="clickedStopButton()" id= "stop_btn"  class="game_button"> STOP</button>        
+      </div>    
+      <br>  
+      <div id = "error_message"></div>
+      <hr class = "spacer1" >  
+      <div id = "score_board" >   
+        <h1>Wyniki:</h1>   
+        Najlepszy czas podczas obecnej sesji: <div id="best_time" class = "result"></div><br>
+        Najgorszy czas podczas obecnej sesji: <div id="worst_time"class = "result"></div><br>
+        Średni czas podczas obecnej sesji: <div id="avg_time"class = "result"></div><br>
+        Najlepszy czas podczas całej rozgrywki: <div id="best_game_time"class = "result"></div>
+      </div>
+      <br>
+      <hr class = "spacer1" >  
+      <div id="help">
+        <h2 id="title">Jak grać?</h2> 
+
+        1. Wprowadź liczbę rund, ile chcesz rozegrać podczas następnej sesji. <br><br>
+        2. Kliknij przycisk START - wtedy rozpocznie się sesja.<br><br>
+        3. Podczas sesji okienko refleksomierzacza (prostokąt na samej górze) będzie zmieniać kolor. 
+        W momencie gdy kolor się zmieni należy jak najszybciej kliknąć w ten prostokąt (można również kliknąć dowolny klawisz na klawiaturze), wtedy gra 
+        zmierzy czas Twojego refleksu. Pamiętaj, żeby nie klikać za wcześnie! :] <br><br>
+        4. Gdy uda nam się kliknąć, zakończy się pierwsza runda sesji, a wyniki zostaną wyświetlone w odpowiednim miejscu - nad instrukcją. <br><br>
+        5. Podczas trwania sesji możesz ją przerwać, klikając przycisk STOP. Wyniki z zatrzymywanej sesji zostaną utracone.
+      </div>
+    </div>
+   
+
+  </body>
 </html>

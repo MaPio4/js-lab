@@ -13,6 +13,7 @@ class GameManager {
   generateNewSession() {
     if(this.currentSession != null && !this.currentSession.isFinished) {
       console.log(`[INFO] Cannot start new session. Current session is in pogress.`);
+      displayError("Nie możesz rozpocząć nowej sesji dopóki nie zakończysz obecnej!", COLOR_WRONG, ERROR_TIME_LONG);
       return false;
     } 
     var rounds = [];
@@ -41,6 +42,7 @@ class GameManager {
     this.sessions.splice(this.sessions.indexOf(this.currentSession), 1);
     this.currentSession = null;
     console.log(`[INFO] Stopped the session. ${this.sessions.length}`);
+    displayError("Przerwano sesję. Postęp z sesji nie został zapisny.", COLOR_OK, ERROR_TIME_LONG);
     return true;
   }
 

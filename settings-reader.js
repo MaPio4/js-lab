@@ -9,6 +9,9 @@ class SettingsReader {
       value = NUMBER_OF_ROUNDS_PER_SESSION;
     }
     value = Number(value);
+    if(value <= 0) {
+      value = NUMBER_OF_ROUNDS_PER_SESSION;
+    }
     this.gameManager.setRoundsPerSession(value);
   }
 }

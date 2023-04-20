@@ -11,7 +11,9 @@ class GameSession {
       console.log(`[INFO] Session has started -> ${this.rounds.length} rounds ahead!`);
       this.currentRoundIndex = 0;
       this.currentRound = this.rounds[this.currentRoundIndex];
-      this.currentRound.start();      
+      this.currentRound.start();  
+      displayError(`Rozpoczęto sesję. Rundy do rozegrania: ${this.rounds.length} - powodzenia!`, COLOR_OK, ERROR_TIME_LONG); 
+      onSessionStarted(this);   
       return true;
     }  
   }

@@ -30,12 +30,14 @@ class GameRound {
     if(!this.awaitingForClick) {      
       this.earlyClicksCount++;
       console.log("[INFO] Agr! Clicked too early!");
+      displayError("Za wcześnie!", COLOR_WRONG, ERROR_TIME_SHORT);
       return false;
     }    
     this.clickedTime = readTime();       
     onRoundFinished(this);
 
     console.log(`[INFO] Good catch, time: ${this.getReactionTime()}`);
+    displayError("Świetnie!", COLOR_OK, ERROR_TIME_SHORT);
     return true;
   }
 
