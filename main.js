@@ -55,7 +55,7 @@ const onRoundFinished = function(p_round) {
 const onSessionFinished = function(p_session) {
   console.log(`[INFO] Session finished. Number of clicks before:${p_session.getNumberOfEarlyClicks()}`);
   document.getElementById("game_field").innerText = `Koniec sesji! 
-  Twój najelpszy czas podczas tej sesji to ${p_session.getBestTime()} ms 
+  Twój najelpszy czas podczas tej sesji to ${p_session.getBestTime()} ms.
   Kliknięcia przed czasem: ${p_session.getNumberOfEarlyClicks()}. 
   Kliknij START aby rozpocząć kolejną sesję.`
   setGameFieldColor(DEFAULT_FIELD_COLOR);
