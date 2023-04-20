@@ -88,8 +88,15 @@ class GameSession {
     })
     return value;
   }
+
+  hasAnyData() {
+    var hasData = false;
+    this.rounds.forEach(round => {
+      if(round.isPlayed()) {       
+        hasData = true;
+      }
+    });    
+    return hasData;
+  }
 }
 
-const onSessionFinished = function(p_session) {
-  console.log(`[INFO] Session finished. Number of clicks before:${p_session.getNumberOfEarlyClicks()}`)
-}

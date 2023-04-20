@@ -1,16 +1,21 @@
 <html>
     <head>
+        <script src="color-picker.js"></script>
         <script src="game-round.js"></script>
         <script src="game-session.js"></script>  
         <script src="score-board.js"></script>      
         <script src="game-manager.js"></script>
+        <script src="settings-reader.js"></script>
         <script src="main.js"></script>
         
     </head>
-    <body>
+    <body onload="pageLoaded()">
         <div>
+            <div id="game_field"> FIELD </div>
+            <input type="number" id="rounds_per_session">
             <button onclick="clickedStartButton()"> START</button>
             <button onclick="clickedReactionField()" id="reaction_field"> REACTION</button>
+            <button onclick="clickedStopButton()" id="reaction_field"> STOP</button>
             <div> BEST TIME: <div id="best_game_time"></div></div>
             <div> BEST SESSION TIME: <div id="best_time"></div></div>
             <div> WORST SESSION TIME: <div id="worst_time"></div></div>

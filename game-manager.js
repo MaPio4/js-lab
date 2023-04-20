@@ -1,7 +1,18 @@
 class GameManager {
-  constructor() {
+  constructor(p_defaultPerSession, p_colorPicker) {
     this.currentSession = null;
     this.sessions = [];
+    this.roundsPerSession = p_defaultPerSession;
+    this.colorPicker = p_colorPicker;
+    this.previosuColor = null;
+  }
+
+  setRoundsPerSession(p_value) {
+    this.roundsPerSession = p_value;
+  }
+
+  getNextColor() {
+
   }
 
   generateNewSession() {
@@ -10,10 +21,10 @@ class GameManager {
       return false;
     } 
     var rounds = [];
-    for(let i = 0; i < NUMBER_OF_ROUNDS_PER_SESSION; i++) {
-      var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    for(let i = 0; i < this.roundsPerSession; i++) {
+      var color = this.colorPicker.getColor();
       var delay = (Math.random() * (MAX_ROUND_TIME - MIN_ROUND_TIME) + MIN_ROUND_TIME) * 1000;
-      rounds.push(new GameRound(randomColor, delay));
+      rounds.push(new GameRound(color, delay));
     }
     var newSession = new GameSession(rounds);   
     this.sessions.push(newSession);
@@ -22,11 +33,21 @@ class GameManager {
   }
 
   startSession() {
-    //console.log("GameManager.startSession()")
+    //console.log("GameManager.startSession()")  
     if(this.generateNewSession()) {
       this.currentSession.start();
-    };   
-    
+      return true;
+    };    
+  }
+
+  stop() {
+    if(this.currentSession == null) {
+      return false;
+    }
+    this.sessions.splice(this.sessions.indexOf(this.currentSession), 1);
+    this.currentSession = null;
+    console.log(`[INFO] Stopped the session. ${this.sessions.length}`);
+    return true;
   }
 
   onClick() {
@@ -34,7 +55,7 @@ class GameManager {
       return;
     }
     if(this.currentSession.onClick()) {
-      //console.log("Session is finished!");      
+      this.currentSession = null;     
     }
   }
 
@@ -53,7 +74,6 @@ class GameManager {
   }
 }
 
-var roundTimeout = null;
 const changeFieldColor = function(p_manager) {
   p_manager.onSwitch();
 }

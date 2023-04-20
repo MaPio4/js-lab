@@ -9,27 +9,22 @@ class GameRound {
     this.earlyClicksCount = null;
   }
 
-  start() {
-    //console.log("GameRound.start()")
+  start() {    
     this.startTime = performance.now();
     this.awaitingForClick = false;  
     startNextRound(this.delay);    
     this.earlyClicksCount = 0;
-    console.log(`[INFO] Round has started`)
-
+    console.log(`[INFO] Round has started - color:${this.color}`)
   }
 
   changeColor() {
-    //change color
-    //console.log("GameRound.changeColor()")
     this.colorChangeTime = performance.now();
     this.awaitingForClick = true;
-    document.getElementById("reaction_field").style ="background-color = " +this.color;
+    setGameFieldColor(this.color);
     console.log(`[INFO] Color changed, timer is ON!!!`);
   }
 
-  onClick() {
-    //console.log(`GameRound.onClick() -> aweaiting:${this.awaitingForClick}`);
+  onClick() {    
     if(!this.awaitingForClick) {
       console.log("[INFO] Agr! Clicked too early!")
       this.earlyClicksCount++;
@@ -37,7 +32,7 @@ class GameRound {
     }    
     this.clickedTime = performance.now();
     console.log(`[INFO] Good catch, time: ${this.getReactionTime()}`)    
-    onRoundFinished();
+    onRoundFinished(this);
     return true;
   }
 
@@ -54,14 +49,17 @@ class GameRound {
   }
 }
 
+var roundTimeout = null;
 const startNextRound = function(p_time) {
-  if(typeof roundTimeout == 'number') {
-    clearTimeout(roundTimeout);
-  }
-  //console.log(`startNextRound(${p_time}`)
+  killNextRoundTimeout();  
   roundTimeout = setTimeout(changeFieldColor, p_time, gameManager);
 }
 
-const onRoundFinished = function() {
-  scoreBoard.update();
+const killNextRoundTimeout = function() {
+  if(typeof roundTimeout == 'number') {
+    clearTimeout(roundTimeout);
+  }
 }
+
+
+
