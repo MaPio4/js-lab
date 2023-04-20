@@ -4,6 +4,7 @@ const MAX_ROUND_TIME = 6;
 const NUMBER_OF_ROUNDS_PER_SESSION = 5;
 const DEFAULT_SCOREBOARD_VALUE = `none`;
 const DEFAULT_FIELD_COLOR = "#FFFFFF";
+const TIME_UNIT_SUFFIX = "ms";
 const AVAILABLE_COLORS = [
   "#d40000", "#d48a00", "#bed400", "#74d400", "#00bf50", 
   "#00a3bf", "#0033bf", "#4300bf", "#8f00bf", "#bf0083",
@@ -12,7 +13,7 @@ const AVAILABLE_COLORS = [
 
 // Init:
 const gameManager = new GameManager(NUMBER_OF_ROUNDS_PER_SESSION, new ColorPicker(AVAILABLE_COLORS));
-const scoreBoard = new ScoreBoard(gameManager, DEFAULT_SCOREBOARD_VALUE);
+const scoreBoard = new ScoreBoard(gameManager, DEFAULT_SCOREBOARD_VALUE, TIME_UNIT_SUFFIX);
 const settingsReader = new SettingsReader(gameManager);
 var roundTimeout = null;
 // ---------------
@@ -65,4 +66,8 @@ const setGameFieldColor = function(p_hex) {
 
 const changeFieldColor = function(p_manager) {
   p_manager.onSwitch();
+}
+
+const readTime = function() {
+  return Math.round(performance.now());
 }

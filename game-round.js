@@ -10,7 +10,7 @@ class GameRound {
   }
 
   start() {    
-    this.startTime = performance.now();
+    this.startTime = readTime();
     this.awaitingForClick = false; 
     this.earlyClicksCount = 0;
 
@@ -19,7 +19,7 @@ class GameRound {
   }
 
   changeColor() {
-    this.colorChangeTime = performance.now();
+    this.colorChangeTime = readTime();
     this.awaitingForClick = true;
 
     setGameFieldColor(this.color);
@@ -32,7 +32,7 @@ class GameRound {
       console.log("[INFO] Agr! Clicked too early!");
       return false;
     }    
-    this.clickedTime = performance.now();       
+    this.clickedTime = readTime();       
     onRoundFinished(this);
 
     console.log(`[INFO] Good catch, time: ${this.getReactionTime()}`);
