@@ -6,8 +6,7 @@ class GameSession {
     this.isFinished = false;
   } 
 
-  start() {    //console.log("GameSession.start()")
-    
+  start() {        
     if(this.currentRound == null && this.rounds.length > 0) {
       console.log(`[INFO] Session has started -> ${this.rounds.length} rounds ahead!`);
       this.currentRoundIndex = 0;
@@ -25,6 +24,7 @@ class GameSession {
       return true;
     }
     this.isFinished = true;
+
     onSessionFinished(this);    
     return false;
   }
@@ -34,6 +34,7 @@ class GameSession {
       console.log(`[INFO] Sessions is already finished. Start new session.`);
       return true;
     }
+
     if(this.currentRound.onClick()) {      
       return !this.nextRound();
     }

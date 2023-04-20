@@ -33,6 +33,7 @@ class ScoreBoard {
   }  
 }
 
+// Related functions:
 const updateScoreBoard = function(p_bestTime, p_worstTime, p_avgTime, p_bestGameTime) {
   document.getElementById("best_game_time").innerText = p_bestGameTime;
   document.getElementById("best_time").innerText = p_bestTime;

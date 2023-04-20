@@ -3,16 +3,11 @@ class GameManager {
     this.currentSession = null;
     this.sessions = [];
     this.roundsPerSession = p_defaultPerSession;
-    this.colorPicker = p_colorPicker;
-    this.previosuColor = null;
+    this.colorPicker = p_colorPicker;    
   }
 
   setRoundsPerSession(p_value) {
     this.roundsPerSession = p_value;
-  }
-
-  getNextColor() {
-
   }
 
   generateNewSession() {
@@ -33,7 +28,6 @@ class GameManager {
   }
 
   startSession() {
-    //console.log("GameManager.startSession()")  
     if(this.generateNewSession()) {
       this.currentSession.start();
       return true;
@@ -72,8 +66,4 @@ class GameManager {
     });
     return time;
   }
-}
-
-const changeFieldColor = function(p_manager) {
-  p_manager.onSwitch();
 }

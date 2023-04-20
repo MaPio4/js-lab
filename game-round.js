@@ -11,28 +11,31 @@ class GameRound {
 
   start() {    
     this.startTime = performance.now();
-    this.awaitingForClick = false;  
-    startNextRound(this.delay);    
+    this.awaitingForClick = false; 
     this.earlyClicksCount = 0;
+
+    startNextRound(this.delay); 
     console.log(`[INFO] Round has started - color:${this.color}`)
   }
 
   changeColor() {
     this.colorChangeTime = performance.now();
     this.awaitingForClick = true;
+
     setGameFieldColor(this.color);
     console.log(`[INFO] Color changed, timer is ON!!!`);
   }
 
   onClick() {    
-    if(!this.awaitingForClick) {
-      console.log("[INFO] Agr! Clicked too early!")
+    if(!this.awaitingForClick) {      
       this.earlyClicksCount++;
+      console.log("[INFO] Agr! Clicked too early!");
       return false;
     }    
-    this.clickedTime = performance.now();
-    console.log(`[INFO] Good catch, time: ${this.getReactionTime()}`)    
+    this.clickedTime = performance.now();       
     onRoundFinished(this);
+
+    console.log(`[INFO] Good catch, time: ${this.getReactionTime()}`);
     return true;
   }
 
@@ -49,7 +52,7 @@ class GameRound {
   }
 }
 
-var roundTimeout = null;
+// Related functions:
 const startNextRound = function(p_time) {
   killNextRoundTimeout();  
   roundTimeout = setTimeout(changeFieldColor, p_time, gameManager);
@@ -60,6 +63,3 @@ const killNextRoundTimeout = function() {
     clearTimeout(roundTimeout);
   }
 }
-
-
-
